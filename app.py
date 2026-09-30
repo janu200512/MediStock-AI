@@ -96,10 +96,11 @@ with tab2:
     current=int(hist.iloc[-1]["stock_on_hand"])
     projected=max(0, current-preds.sum())
     risk = risk_label(current, avg_forecast, lead_days)
-    a,b,c=st.columns(3)
+    a,b,c,d=st.columns(4)
     a.metric("Predicted avg/day",f"{avg_forecast:.1f}")
     b.metric("Current stock",f"{current:,}")
-    c.metric("Risk",risk)
+    c.metric("Projected stock",f"{projected:,}")
+    d.metric("Risk",risk)
     st.info(f"AI estimate: approximately **{preds.sum():,.0f} units** may be consumed over the next {horizon} days.")
 
 with tab3:
