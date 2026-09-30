@@ -1,0 +1,40 @@
+SLIDE 1 — MediStock AI
+Smart Health & Supply Chain Resilience
+AI-assisted medicine demand forecasting and inventory risk detection
+Team: Janu Ahirwar
+Track 3
+
+SLIDE 2 — Problem
+• Medicine stock-outs can disrupt healthcare delivery.
+• Overstocking can increase expiry and inventory waste.
+• Manual planning may react after a shortage becomes visible.
+• Healthcare teams need an early-warning view of demand, stock cover and replenishment.
+
+SLIDE 3 — Our Solution
+• Central dashboard for medicine inventory.
+• AI-assisted short-term demand forecasting.
+• Stock-out risk classification: Low / Medium / High / Critical.
+• Suggested reorder quantity using predicted demand and supplier lead time.
+• Downloadable reorder plan for procurement teams.
+
+SLIDE 4 — How It Works & Tech
+Input: historical consumption + receipts + current stock
+→ feature engineering: lag demand + rolling average + day-of-week
+→ Random Forest demand forecast
+→ stock-cover & risk calculation
+→ reorder recommendation
+Tech: Python, Streamlit, Pandas, NumPy, Scikit-learn
+Prototype data is synthetic for demonstration.
+
+SLIDE 5 — Impact & Future Scope
+Expected value:
+• Earlier visibility of potential shortages
+• More data-driven procurement planning
+• Lower risk of avoidable stock-outs
+• Better control of excess inventory/expiry
+Future:
+• real hospital ERP integration
+• supplier reliability scoring
+• multi-hospital inventory balancing
+• IoT cold-chain monitoring
+• Gemini-generated procurement summaries
