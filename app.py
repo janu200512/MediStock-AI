@@ -94,7 +94,7 @@ with tab2:
     ]))
     avg_forecast=float(preds.mean())
     current=int(hist.iloc[-1]["stock_on_hand"])
-    projected=max(0,current-preds.cumsum())
+    projected=max(0, current-preds.sum())
     risk = risk_label(current, avg_forecast, lead_days)
     a,b,c=st.columns(3)
     a.metric("Predicted avg/day",f"{avg_forecast:.1f}")
