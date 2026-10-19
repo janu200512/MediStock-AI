@@ -1,85 +1,76 @@
-# 💊 MediStock-AI
+# 💊 MediStock AI
 
-### AI-Assisted Medicine Inventory & Supply-Chain Resilience Dashboard
+### AI-Assisted Medicine Demand Forecasting, Stock-Out Risk Detection & Replenishment Planning
 
-MediStock-AI is an AI-assisted healthcare inventory management application designed to help monitor medicine stock, forecast demand, identify stock-out risks, detect potential expiry issues, and support data-driven replenishment planning.
+MediStock AI is a high-performance clinical healthcare inventory management web application built with React, TypeScript, Vite, and Tailwind CSS. It is redesigned to help healthcare providers monitor pharmaceutical stocks, forecast multi-day demand, identify stock-out risks before they become critical, flag approaching batch expirations, and generate data-driven replenishment plans.
 
-## 🚀 Live Demo
-
-https://medistock-ai-dsqkpc4rxqfg8ysruy7lgm.streamlit.app/
-
-## 🎯 Problem
-
-Healthcare providers need to maintain sufficient medicine inventory while avoiding:
-
-- Medicine stock-outs
-- Emergency shortages
-- Overstocking
-- Medicine expiry and wastage
-- Difficulties in demand planning
-
-Manual inventory monitoring can make it difficult to identify these risks early.
-
-## 💡 Solution
-
-MediStock-AI provides an early-warning and decision-support layer for healthcare inventory planning.
-
-The application:
-
-- 📊 Monitors medicine inventory
-- 🔮 Forecasts short-term demand using a Random Forest model
-- 📦 Estimates days of stock cover
-- ⚠️ Classifies stock-out risk
-- ⏳ Identifies potential expiry batches
-- 🔄 Suggests replenishment quantities
-- 📥 Provides a downloadable reorder plan
-
-> **Demo note:** The included dataset is synthetic and created only for the hackathon prototype. It does not contain real hospital or patient data.
-
-## 🖥️ Key Features
+## 🚀 Key Features
 
 ### 📊 Command Center
-Provides a centralized overview of medicine inventory, stock levels, risk indicators, and potential expiry batches.
+- **Inventory Risk Overview**: Real-time table displaying current stock on hand, 14-day rolling daily consumption, days of stock cover, classified risk levels, and nearest batch expiration dates.
+- **Stock Distribution Chart**: Interactive bar chart displaying on-hand inventory units per monitored medication with risk color coding.
+- **Real-time Filtering & Sorting**: Filter and sort medications dynamically by name, stock, consumption rate, or risk status.
 
 ### 🔮 AI Forecast
-Uses historical consumption data and a Random Forest Regression model to estimate future daily medicine demand.
-
-### ⚠️ Inventory Risk Analysis
-Evaluates inventory conditions using expected demand, available stock, and supplier lead time to identify potential stock-out risks.
+- **Autoregressive Demand Forecasting**: Multi-step regression modeling that accounts for day-of-week consumption patterns, 7-day lags, 14-day lags, and rolling averages.
+- **Interactive Horizon Slider**: Adjust forecast horizons from 7 to 30 days and observe predicted demand and projected remaining inventory.
+- **Visual Demand Trajectory**: High-clarity line chart illustrating historical consumption leading seamlessly into predicted demand trends.
+- **Detailed Schedule Breakdown**: Toggleable day-by-day table of future consumption projections.
 
 ### 📦 Reorder Planning
-Generates suggested replenishment quantities based on inventory conditions and expected demand.
-
-### ⏳ Expiry Monitoring
-Highlights medicine batches that may require attention because of approaching expiry.
+- **Lead-Time Aware Procurement**: Integrates supplier lead times (2–21 days) with a 14-day safety buffer.
+- **Automated Target Calculation**: Calculates required replenishment:
+  $$\text{Demand Window} = \sum \text{Forecast}(\text{Lead Time} + 14\text{ days})$$
+  $$\text{Safety Buffer} = \max(10, 0.20 \times \text{Demand Window})$$
+  $$\text{Suggested Reorder} = \max(0, \lceil(\text{Demand Window} + \text{Safety Buffer}) - \text{Stock on Hand}\rceil)$$
+- **Export to CSV**: Download the generated procurement schedule as `reorder_plan.csv` for immediate purchasing operations.
 
 ## 🛠️ Tech Stack
 
-- Python
-- Streamlit
-- Pandas
-- NumPy
-- Scikit-learn
-- Random Forest Regression
+- **Framework**: React 19 (TypeScript)
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Data Visualization**: Recharts & Lucide Icons
+- **Data Parsing**: PapaParse
 
-## ⚙️ How It Works
+## 🏃 Running the Application
 
-1. Historical daily medicine consumption is loaded.
-2. Lagged consumption and rolling-average features are created.
-3. A Random Forest Regression model forecasts future daily demand.
-4. Current inventory is compared with expected demand and supplier lead time.
-5. The system evaluates stock-out risk and inventory conditions.
-6. Suggested reorder quantities are generated.
-7. Results are presented through an interactive dashboard.
+```bash
+npm install
+npm run dev
+```
+
+The application runs on `http://localhost:3000`.
 
 ## 📁 Project Structure
 
 ```text
-MediStock-AI/
-├── app.py
-├── requirements.txt
-├── README.md
+├── index.html
+├── metadata.json
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
 ├── data/
 │   └── inventory_history.csv
-└── .streamlit/
-    └── config.toml
+├── public/
+│   └── data/
+│       └── inventory_history.csv
+└── src/
+    ├── main.tsx
+    ├── App.tsx
+    ├── index.css
+    ├── types.ts
+    ├── data/
+    │   └── rawInventory.ts
+    ├── utils/
+    │   ├── forecasting.ts
+    │   └── inventory.ts
+    └── components/
+        ├── Sidebar.tsx
+        ├── MetricCards.tsx
+        ├── CommandCenterTab.tsx
+        ├── ForecastTab.tsx
+        └── ReorderPlanTab.tsx
+```
+
+> **Note:** The included dataset is synthetic and created for demonstration. Forecasts are decision-support estimates, not medical advice.

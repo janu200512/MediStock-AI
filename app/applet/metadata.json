@@ -1,0 +1,7 @@
+{
+  "name": "MediStock AI",
+  "description": "AI-assisted medicine demand forecasting, stock-out risk detection and reorder planning",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
