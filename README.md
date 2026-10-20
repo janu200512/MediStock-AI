@@ -3,6 +3,9 @@
 ### AI-Assisted Medicine Demand Forecasting, Stock-Out Risk Detection & Replenishment Planning
 
 MediStock AI is a high-performance clinical healthcare inventory management web application built with React, TypeScript, Vite, and Tailwind CSS. It is redesigned to help healthcare providers monitor pharmaceutical stocks, forecast multi-day demand, identify stock-out risks before they become critical, flag approaching batch expirations, and generate data-driven replenishment plans.
+## 🌐 Live Public Production URL
+
+https://ai.studio/apps/08a753d1-9b04-451c-83f5-72be0ec89481
 
 ## 🚀 Key Features
 
